@@ -10,6 +10,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Hyperlink?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.csc311_gui_basics.HelloController" stylesheets="@styles.css">
     <padding>
@@ -36,7 +43,24 @@
     </HBox>
 
     <HBox spacing="10.0" alignment="CENTER">
-        <CheckBox fx:id="subscribeCheck" text="Subscribe"/>
-        <ChoiceBox fx:id="optionsBox"/>
+        <CheckBox fx:id="subscribeCheck" text="Subscribe" onAction="#onSubscribeToggle"/>
+        <ChoiceBox fx:id="optionsBox" onAction="#onOptionChanged"/>
     </HBox>
+    <Hyperlink fx:id="subscriptionLink" text="Open FC Barcelona updates" visible="false" managed="false"/>
+    <StackPane prefHeight="300.0" prefWidth="500.0">
+        <TableView fx:id="statsTable" visible="false" managed="false">
+            <columns>
+                <TableColumn fx:id="metricColumn" text="Metric" prefWidth="300.0"/>
+                <TableColumn fx:id="valueColumn" text="Value" prefWidth="180.0"/>
+            </columns>
+        </TableView>
+        <BarChart fx:id="statsChart" visible="false" managed="false">
+            <xAxis>
+                <CategoryAxis label="Metric"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Value"/>
+            </yAxis>
+        </BarChart>
+    </StackPane>
 </VBox>
